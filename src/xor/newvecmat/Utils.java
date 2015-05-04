@@ -4,6 +4,8 @@ import java.util.List;
 
 import xor.newvecmat.vec.Vec_numeric;
 import xor.newvecmat.vec.b.BVec;
+import xor.newvecmat.vec.d.DVec;
+import xor.newvecmat.vec.f.Vec;
 
 public final class Utils {
 
@@ -34,6 +36,44 @@ public final class Utils {
 		return -1;
 	}
 
+	public static void fill(float[] f, Object[] obj) {
+		int i = 0;
+		for (Object o : obj) {
+			if (o instanceof Number) {
+				f[i++] = ((Number) o).floatValue();
+			} else if (o instanceof Vec<?, ?>) {
+				Vec<?, ?> v = (Vec<?, ?>) o;
+				final int size = v.dim();
+				for (int j = 0; j < size; j++) {
+					f[i++] = v.get(j);
+				}
+			} else {
+				throw new IllegalArgumentException();
+			}
+		}
+		if (i != f.length)
+			throw new IllegalArgumentException();
+	}
+	
+	public static void fill(double[] f, Object[] obj) {
+		int i = 0;
+		for (Object o : obj) {
+			if (o instanceof Number) {
+				f[i++] = ((Number) o).doubleValue();
+			} else if (o instanceof DVec<?, ?>) {
+				DVec<?, ?> v = (DVec<?, ?>) o;
+				final int size = v.dim();
+				for (int j = 0; j < size; j++) {
+					f[i++] = v.get(j);
+				}
+			} else {
+				throw new IllegalArgumentException();
+			}
+		}
+		if (i != f.length)
+			throw new IllegalArgumentException();
+	}
+	
 	public static void fill(List<Number> f, Object[] obj) {
 		for (Object o : obj) {
 			if (o instanceof Number) {

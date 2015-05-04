@@ -15,9 +15,9 @@ public abstract class Mat_base<T extends Mat_base<T, T2, V, N>, T2 extends Mat_b
 
 	public abstract void set(int m, int n, N v);
 
-	protected abstract Vec_numeric<?, ?, N> getRow(int m);
+	protected abstract V getRow(int m);
 
-	protected abstract Vec_numeric<?, ?, N> getColumn(int n);
+	protected abstract V getColumn(int n);
 
 	public <R extends V> R row(int m) {
 		if (m < 0 || m >= m())
@@ -85,9 +85,9 @@ public abstract class Mat_base<T extends Mat_base<T, T2, V, N>, T2 extends Mat_b
 
 	public abstract <M extends Mat_base<?, ?, ?, N>> M mulU(Mat_base<?, ?, ?, N> v);
 
-	protected abstract Vec_numeric<?, ?, N> mulV(Vec_numeric<?, ?, N> v);
+	public abstract V mul(V v);
 
-	public <R extends V> R mul(Vec_numeric<?, ?, N> v){
+	public <R extends V> R mulV(V v){
 		return Utils.unchecked(mulV(v));
 	}
 
@@ -122,53 +122,66 @@ public abstract class Mat_base<T extends Mat_base<T, T2, V, N>, T2 extends Mat_b
 
 	@Override
 	public String toString() {
-		final int m = m();
 		final int n = n();
-		String[] lines = new String[m];
-		String[] num = new String[m];
-		int max;
-		int ll = -1;
-		for (int j = 0; j < n; j++) {
-			max = 0;
+		if (n > 0) {
+			final int m = m();
+			StringBuilder[] lines = new StringBuilder[m];
+			String[] num = new String[m];
+			int max = 0;
 			for (int i = 0; i < m; i++) {
-				String nu = getW(i, j).toString();
+				lines[i] = new StringBuilder();
+				String nu = getW(i, 0).toString();
 				int l = nu.length();
 				if (l > max)
 					max = l;
 				num[i] = nu;
 			}
-			if (j == 0) {
-				for (int i = 0; i < m; i++) {
-					String f = " ";
-					for (int k = num[i].length(); k < max; k++) {
-						f += " ";
-					}
-					lines[i] = f + num[i];
+			for (int i = 0; i < m; i++) {
+				StringBuilder sb = lines[i];
+				for (int k = num[i].length(); k < max; k++) {
+					sb.append(' ');
 				}
-			} else {
-				for (int i = 0; i < m; i++) {
-					String f = ", ";
-					for (int k = num[i].length(); k < max; k++) {
-						f += " ";
-					}
-					lines[i] += f + num[i];
-				}
+				sb.append(num[i]);
 			}
-			ll += 2 + max;
+			int ll = max;
+			for (int j = 1; j < n; j++) {
+				max = 0;
+				for (int i = 0; i < m; i++) {
+					String nu = getW(i, j).toString();
+					int l = nu.length();
+					if (l > max)
+						max = l;
+					num[i] = nu;
+				}
+				for (int i = 0; i < m; i++) {
+					StringBuilder sb = lines[i];
+					sb.append(" ,");
+					for (int k = num[i].length(); k < max; k++) {
+						sb.append(' ');
+					}
+					sb.append(num[i]);
+				}
+				ll += 2 + max;
+			}
+			StringBuilder ret = new StringBuilder((ll + 5) * (m + 2) - 1);
+			ret.append("+-");
+			for (int i = 0; i < ll; i++) {
+				ret.append(' ');
+			}
+			ret.append("-+\n");
+			for (int i = 0; i < m; i++) {
+				ret.append("| ");
+				ret.append(lines[i]);
+				ret.append(" |\n");
+			}
+			ret.append("+-");
+			for (int i = 0; i < ll; i++) {
+				ret.append(' ');
+			}
+			ret.append("-+");
+			return ret.toString();
 		}
-		if (ll == -1) {
-			return "+- -+\n|   |\n+- -+";
-		}
-		String top = "+-";
-		for (int i = 1; i < ll; i++) {
-			top += " ";
-		}
-		top += "-+";
-		String ret = top + "\n";
-		for (int i = 0; i < m; i++) {
-			ret += "|" + lines[i] + " |\n";
-		}
-		return ret + top;
+		return "+- -+\n|   |\n+- -+";
 	}
 
 	public abstract void writeTo(ByteBuffer byteBuffer);
@@ -200,7 +213,7 @@ public abstract class Mat_base<T extends Mat_base<T, T2, V, N>, T2 extends Mat_b
 		if (m != other.m())
 			return false;
 		final int n = n();
-		if (m != other.n())
+		if (n != other.n())
 			return false;
 		for (int i = 0; i < m; i++) {
 			for (int j = 0; j < n; j++) {
