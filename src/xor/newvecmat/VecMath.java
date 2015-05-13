@@ -35,11 +35,13 @@ public final class VecMath {
 	private VecMath() {
 	}
 
-	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M add(M v1, N v2) {
+	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M add(
+			M v1, N v2) {
 		return v1.add(v2);
 	}
 
-	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M add(N v1, M v2) {
+	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M add(
+			N v1, M v2) {
 		return v2.add(v1);
 	}
 
@@ -63,11 +65,13 @@ public final class VecMath {
 		return v2.add(v1);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V add(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V add(
+			V v1, N v2) {
 		return v1.add(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V add(N v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V add(
+			N v1, V v2) {
 		return v2.add(v1);
 	}
 
@@ -127,11 +131,13 @@ public final class VecMath {
 		return v2.add(v1);
 	}
 
-	public static final <V extends Vec_float<V, ?, N>, N extends Number> V add_scaled(V v1, V v2, N v3) {
+	public static final <V extends Vec_float<V, ?, N>, N extends Number> V add_scaled(
+			V v1, V v2, N v3) {
 		return v1.add_scaled(v2, v3);
 	}
 
-	public static final <V extends Vec_float<V, ?, ?>> V add_scaled(V v1, V v2, V v3) {
+	public static final <V extends Vec_float<V, ?, ?>> V add_scaled(V v1, V v2,
+			V v3) {
 		return v1.add_scaled(v2, v3);
 	}
 
@@ -147,15 +153,18 @@ public final class VecMath {
 		return v1 + v2 * v3;
 	}
 
-	public static final <V extends DVec<V, ?>> V add_scaled(V v1, V v2, double v3) {
+	public static final <V extends DVec<V, ?>> V add_scaled(V v1, V v2,
+			double v3) {
 		return v1.add_scaled(v2, v3);
 	}
 
-	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M sub(M v1, N v2) {
+	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M sub(
+			M v1, N v2) {
 		return v1.sub(v2);
 	}
 
-	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M sub(N v1, M v2) {
+	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M sub(
+			N v1, M v2) {
 		return v2.sub2(v1);
 	}
 
@@ -179,11 +188,13 @@ public final class VecMath {
 		return v2.sub2(v1);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V sub(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V sub(
+			V v1, N v2) {
 		return v1.sub(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V sub(N v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V sub(
+			N v1, V v2) {
 		return v2.sub2(v1);
 	}
 
@@ -271,7 +282,8 @@ public final class VecMath {
 		return -v1;
 	}
 
-	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M mul(M v1, N v2) {
+	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M mul(
+			M v1, N v2) {
 		return v1.mul(v2);
 	}
 
@@ -287,27 +299,33 @@ public final class VecMath {
 		return v1.mul(v2);
 	}
 
-	public static final <M extends Mat_base<M, M2, ?, N>, M2 extends Mat_base<M2, ?, ?, N>, N extends Number> M2 mul(M v1, M v2) {
+	public static final <M extends Mat_base<M, M2, ?, N>, M2 extends Mat_base<M2, ?, ?, N>, N extends Number> M2 mul(
+			M v1, M v2) {
 		return v1.mul(v2);
 	}
 
-	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M mulU(Mat_base<?, ?, ?, N> v1, Mat_base<?, ?, ?, N> v2) {
+	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M mulU(
+			Mat_base<?, ?, ?, N> v1, Mat_base<?, ?, ?, N> v2) {
 		return v1.mulU(v2);
 	}
 
-	public static final <M extends Mat_base<M, ?, V, N>, V extends Vec_numeric<V, ?, N>, N extends Number> V mul(M v1, V v2) {
+	public static final <M extends Mat_base<M, ?, V, N>, V extends Vec_numeric<V, ?, N>, N extends Number> V mul(
+			M v1, V v2) {
 		return v1.mul(v2);
 	}
 
-	public static final <M extends Mat_base<M, ?, V, N>, V extends Vec_numeric<V, ?, N>, R extends V, N extends Number> R mulV(M v1, V v2) {
+	public static final <M extends Mat_base<M, ?, V, N>, V extends Vec_numeric<V, ?, N>, R extends V, N extends Number> R mulV(
+			M v1, V v2) {
 		return v1.mulV(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V mul(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V mul(
+			V v1, N v2) {
 		return v1.mul(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V mul(N v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V mul(
+			N v1, V v2) {
 		return v2.mul(v1);
 	}
 
@@ -367,7 +385,8 @@ public final class VecMath {
 		return v2.mul(v1);
 	}
 
-	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M compDiv(M v1, N v2) {
+	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M compDiv(
+			M v1, N v2) {
 		return v1.compDiv(v2);
 	}
 
@@ -403,11 +422,13 @@ public final class VecMath {
 		return (double) v1 / (double) v2;
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V div(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V div(
+			V v1, N v2) {
 		return v1.div(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V div(N v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V div(
+			N v1, V v2) {
 		return v2.div2(v1);
 	}
 
@@ -467,7 +488,8 @@ public final class VecMath {
 		return v2.div2(v1);
 	}
 
-	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M compMod(M v1, N v2) {
+	public static final <M extends Mat_base<M, ?, ?, N>, N extends Number> M compMod(
+			M v1, N v2) {
 		return v1.compMod(v2);
 	}
 
@@ -483,11 +505,13 @@ public final class VecMath {
 		return v1.compMod(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V mod(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V mod(
+			V v1, N v2) {
 		return v1.mod(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V mod(N v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V mod(
+			N v1, V v2) {
 		return v2.mod2(v1);
 	}
 
@@ -547,11 +571,13 @@ public final class VecMath {
 		return v1.pow(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V pow(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V pow(
+			V v1, N v2) {
 		return v1.pow(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V pow(N v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V pow(
+			N v1, V v2) {
 		return v2.pow2(v1);
 	}
 
@@ -983,11 +1009,13 @@ public final class VecMath {
 		return v1 > v2 ? v2 : v1;
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V min(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V min(
+			V v1, N v2) {
 		return v1.min(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V min(N v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V min(
+			N v1, V v2) {
 		return v2.min(v1);
 	}
 
@@ -1043,11 +1071,13 @@ public final class VecMath {
 		return v1 > v2 ? v1 : v2;
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V max(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V max(
+			V v1, N v2) {
 		return v1.max(v2);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V max(N v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V max(
+			N v1, V v2) {
 		return v2.max(v1);
 	}
 
@@ -1103,11 +1133,13 @@ public final class VecMath {
 		return v1 < v2 ? v2 : v1 > v3 ? v3 : v1;
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V clamp(V v1, N v2, N v3) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V clamp(
+			V v1, N v2, N v3) {
 		return v1.clamp(v2, v3);
 	}
 
-	public static final <V extends Vec_numeric<V, ?, ?>> V clamp(V v1, V v2, V v3) {
+	public static final <V extends Vec_numeric<V, ?, ?>> V clamp(V v1, V v2,
+			V v3) {
 		return v1.clamp(v2, v3);
 	}
 
@@ -1123,7 +1155,8 @@ public final class VecMath {
 		return v1.clamp(v2, v3);
 	}
 
-	public static final <V extends DVec<V, ?>> V clamp(V v1, double v2, double v3) {
+	public static final <V extends DVec<V, ?>> V clamp(V v1, double v2,
+			double v3) {
 		return v1.clamp(v2, v3);
 	}
 
@@ -1135,7 +1168,8 @@ public final class VecMath {
 		return (1 - v3) * v1 + v3 * v2;
 	}
 
-	public static final <V extends Vec_float<V, ?, N>, N extends Number> V mix(V v1, V v2, N v3) {
+	public static final <V extends Vec_float<V, ?, N>, N extends Number> V mix(
+			V v1, V v2, N v3) {
 		return v1.mix(v2, v3);
 	}
 
@@ -1167,7 +1201,8 @@ public final class VecMath {
 		return v1 < v2 ? 0 : 1;
 	}
 
-	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V step(V v1, N v2) {
+	public static final <V extends Vec_numeric<V, ?, N>, N extends Number> V step(
+			V v1, N v2) {
 		return v1.step(v2);
 	}
 
@@ -1209,19 +1244,23 @@ public final class VecMath {
 		return t * t * (3.0 - 2.0 * t);
 	}
 
-	public static final <V extends Vec_float<V, ?, N>, N extends Number> V smoothstep(V v1, N v2, N v3) {
+	public static final <V extends Vec_float<V, ?, N>, N extends Number> V smoothstep(
+			V v1, N v2, N v3) {
 		return v1.smoothstep(v2, v3);
 	}
 
-	public static final <V extends Vec_float<V, ?, ?>> V smoothstep(V v1, V v2, V v3) {
+	public static final <V extends Vec_float<V, ?, ?>> V smoothstep(V v1, V v2,
+			V v3) {
 		return v1.smoothstep(v2, v3);
 	}
 
-	public static final <V extends Vec<V, ?>> V smoothstep(V v1, float v2, float v3) {
+	public static final <V extends Vec<V, ?>> V smoothstep(V v1, float v2,
+			float v3) {
 		return v1.smoothstep(v2, v3);
 	}
 
-	public static final <V extends DVec<V, ?>> V smoothstep(V v1, double v2, double v3) {
+	public static final <V extends DVec<V, ?>> V smoothstep(V v1, double v2,
+			double v3) {
 		return v1.smoothstep(v2, v3);
 	}
 
@@ -1237,11 +1276,13 @@ public final class VecMath {
 		return v1 | v2;
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V or(V v1, N v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V or(
+			V v1, N v2) {
 		return v1.or(v2);
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V or(N v1, V v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V or(
+			N v1, V v2) {
 		return v2.or(v1);
 	}
 
@@ -1289,11 +1330,13 @@ public final class VecMath {
 		return v1 & v2;
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V and(V v1, N v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V and(
+			V v1, N v2) {
 		return v1.and(v2);
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V and(N v1, V v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V and(
+			N v1, V v2) {
 		return v2.and(v1);
 	}
 
@@ -1341,11 +1384,13 @@ public final class VecMath {
 		return v1 ^ v2;
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V xor(V v1, N v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V xor(
+			V v1, N v2) {
 		return v1.xor(v2);
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V xor(N v1, V v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V xor(
+			N v1, V v2) {
 		return v2.xor(v1);
 	}
 
@@ -1389,11 +1434,13 @@ public final class VecMath {
 		return v1 << v2;
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V shl(V v1, N v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V shl(
+			V v1, N v2) {
 		return v1.shl(v2);
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V shl(N v1, V v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V shl(
+			N v1, V v2) {
 		return v2.shl(v1);
 	}
 
@@ -1425,11 +1472,13 @@ public final class VecMath {
 		return v1 >> v2;
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V shr(V v1, N v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V shr(
+			V v1, N v2) {
 		return v1.shr(v2);
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V shr(N v1, V v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V shr(
+			N v1, V v2) {
 		return v2.shr(v1);
 	}
 
@@ -1461,11 +1510,13 @@ public final class VecMath {
 		return v1 >>> v2;
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V ushr(V v1, N v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V ushr(
+			V v1, N v2) {
 		return v1.ushr(v2);
 	}
 
-	public static final <V extends Vec_int<V, ?, N>, N extends Number> V ushr(N v1, V v2) {
+	public static final <V extends Vec_int<V, ?, N>, N extends Number> V ushr(
+			N v1, V v2) {
 		return v2.ushr(v1);
 	}
 
@@ -1589,7 +1640,8 @@ public final class VecMath {
 		return v1.all();
 	}
 
-	public static final <V extends Vec_numeric<V, ?, ?>> double distance(V v1, V v2) {
+	public static final <V extends Vec_numeric<V, ?, ?>> double distance(V v1,
+			V v2) {
 		return v1.distance(v2);
 	}
 
@@ -1620,7 +1672,7 @@ public final class VecMath {
 		final float cy = c.y();
 		final float rx = r.x();
 		final float ry = r.y();
-		
+
 		final float m00 = cx * rx;
 		final float m10 = cy * rx;
 		final float m01 = cx * ry;
@@ -1673,7 +1725,8 @@ public final class VecMath {
 		final float m13 = cy * rw;
 		final float m23 = cz * rw;
 		final float m33 = cw * rw;
-		return Mat.Mat4(m00, m10, m20, m30, m01, m11, m21, m31, m02, m12, m22, m32, m03, m13, m23, m33);
+		return Mat.Mat4(m00, m10, m20, m30, m01, m11, m21, m31, m02, m12, m22,
+				m32, m03, m13, m23, m33);
 	}
 
 	public static MatN outerProduct(VecN c, VecN r) {
@@ -1691,28 +1744,138 @@ public final class VecMath {
 		return Mat.MatX(size, mat);
 	}
 
-	public static <V extends Vec_base<V, B, ?>, B extends BVec<B>> B equal(V v1, V v2){
+	public static <V extends Vec_base<V, B, ?>, B extends BVec<B>> B equal(
+			V v1, V v2) {
 		return v1.equals(v2);
 	}
+
+	public static boolean equal(boolean v1, boolean v2) {
+		return v1 == v2;
+	}
 	
-	public static <V extends Vec_base<V, B, ?>, B extends BVec<B>> B notEqual(V v1, V v2){
+	public static boolean equal(double v1, double v2) {
+		return v1 == v2;
+	}
+	
+	public static boolean equal(float v1, float v2) {
+		return v1 == v2;
+	}
+	
+	public static boolean equal(int v1, int v2) {
+		return v1 == v2;
+	}
+	
+	public static boolean equal(long v1, long v2) {
+		return v1 == v2;
+	}
+
+	public static <V extends Vec_base<V, B, ?>, B extends BVec<B>> B notEqual(
+			V v1, V v2) {
 		return v1.notEqual(v2);
 	}
 	
-	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B smaller(V v1, V v2){
-		return v1.smaller(v2);
+	public static boolean notEqual(boolean v1, boolean v2) {
+		return v1 != v2;
 	}
 	
-	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B smallerEqual(V v1, V v2){
+	public static boolean notEqual(double v1, double v2) {
+		return v1 != v2;
+	}
+	
+	public static boolean notEqual(float v1, float v2) {
+		return v1 != v2;
+	}
+	
+	public static boolean notEqual(int v1, int v2) {
+		return v1 != v2;
+	}
+	
+	public static boolean notEqual(long v1, long v2) {
+		return v1 != v2;
+	}
+
+	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B smaller(
+			V v1, V v2) {
+		return v1.smaller(v2);
+	}
+
+	public static boolean smaller(double v1, double v2) {
+		return v1 < v2;
+	}
+	
+	public static boolean smaller(float v1, float v2) {
+		return v1 < v2;
+	}
+	
+	public static boolean smaller(int v1, int v2) {
+		return v1 < v2;
+	}
+	
+	public static boolean smaller(long v1, long v2) {
+		return v1 < v2;
+	}
+	
+	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B smallerEqual(
+			V v1, V v2) {
 		return v1.smallerEqual(v2);
 	}
 	
-	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B bigger(V v1, V v2){
+	public static boolean smallerEqual(double v1, double v2) {
+		return v1 <= v2;
+	}
+	
+	public static boolean smallerEqual(float v1, float v2) {
+		return v1 <= v2;
+	}
+	
+	public static boolean smallerEqual(int v1, int v2) {
+		return v1 <= v2;
+	}
+	
+	public static boolean smallerEqual(long v1, long v2) {
+		return v1 <= v2;
+	}
+
+	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B bigger(
+			V v1, V v2) {
 		return v1.bigger(v2);
 	}
 	
-	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B biggerEqual(V v1, V v2){
+	public static boolean bigger(double v1, double v2) {
+		return v1 > v2;
+	}
+	
+	public static boolean bigger(float v1, float v2) {
+		return v1 > v2;
+	}
+	
+	public static boolean bigger(int v1, int v2) {
+		return v1 > v2;
+	}
+	
+	public static boolean bigger(long v1, long v2) {
+		return v1 > v2;
+	}
+
+	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B biggerEqual(
+			V v1, V v2) {
 		return v1.biggerEqual(v2);
 	}
 	
+	public static boolean biggerEqual(double v1, double v2) {
+		return v1 >= v2;
+	}
+	
+	public static boolean biggerEqual(float v1, float v2) {
+		return v1 >= v2;
+	}
+	
+	public static boolean biggerEqual(int v1, int v2) {
+		return v1 >= v2;
+	}
+	
+	public static boolean biggerEqual(long v1, long v2) {
+		return v1 >= v2;
+	}
+
 }
