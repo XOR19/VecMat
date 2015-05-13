@@ -4,6 +4,7 @@ import xor.newvecmat.COMP_OPS.Func1_L;
 import xor.newvecmat.COMP_OPS.Func2_L;
 import xor.newvecmat.COMP_OPS.Func3_L;
 import xor.newvecmat.VecMath;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVec2;
 
 public abstract class LVec2 extends LVec<LVec2, BVec2> {
@@ -214,6 +215,36 @@ public abstract class LVec2 extends LVec<LVec2, BVec2> {
 		return "[" + x() + ", " + y() + "]";
 	}
 
+	@Override
+	public BVec2 equals(LVec2 other) {
+		return BVec.BVec2(x() == other.x(), y() == other.y());
+	}
+
+	@Override
+	public BVec2 notEqual(LVec2 other) {
+		return BVec.BVec2(x() != other.x(), y() != other.y());
+	}
+
+	@Override
+	public BVec2 bigger(LVec2 other) {
+		return BVec.BVec2(x() > other.x(), y() > other.y());
+	}
+
+	@Override
+	public BVec2 biggerEqual(LVec2 other) {
+		return BVec.BVec2(x() >= other.x(), y() >= other.y());
+	}
+
+	@Override
+	public BVec2 smaller(LVec2 other) {
+		return BVec.BVec2(x() < other.x(), y() < other.y());
+	}
+
+	@Override
+	public BVec2 smallerEqual(LVec2 other) {
+		return BVec.BVec2(x() <= other.x(), y() <= other.y());
+	}
+	
 	@Override
 	protected LVec2 forEach(Func1_L f) {
 		long x = f.calc(x());

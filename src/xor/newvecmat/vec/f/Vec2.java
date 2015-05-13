@@ -4,6 +4,7 @@ import xor.newvecmat.COMP_OPS.Func1_F;
 import xor.newvecmat.COMP_OPS.Func2_F;
 import xor.newvecmat.COMP_OPS.Func3_F;
 import xor.newvecmat.VecMath;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVec2;
 
 public abstract class Vec2 extends Vec<Vec2, BVec2> {
@@ -182,21 +183,25 @@ public abstract class Vec2 extends Vec<Vec2, BVec2> {
 
 	@Override
 	public Vec2 pow(float n) {
-		return new RVec2((float) VecMath.pow(x(), n), (float) VecMath.pow(y(), n));
+		return new RVec2((float) VecMath.pow(x(), n), (float) VecMath.pow(y(),
+				n));
 	}
 
 	@Override
 	public Vec2 pow(Vec2 v) {
-		return new RVec2((float) VecMath.pow(x(), v.x()), (float) VecMath.pow(y(), v.y()));
+		return new RVec2((float) VecMath.pow(x(), v.x()), (float) VecMath.pow(
+				y(), v.y()));
 	}
 
 	public Vec2 pow(float x, float y) {
-		return new RVec2((float) VecMath.pow(x(), x), (float) VecMath.pow(y(), y));
+		return new RVec2((float) VecMath.pow(x(), x), (float) VecMath.pow(y(),
+				y));
 	}
 
 	@Override
 	public Vec2 pow2(float n) {
-		return new RVec2((float) VecMath.pow(n, x()), (float) VecMath.pow(n, y()));
+		return new RVec2((float) VecMath.pow(n, x()), (float) VecMath.pow(n,
+				y()));
 	}
 
 	@Override
@@ -212,6 +217,36 @@ public abstract class Vec2 extends Vec<Vec2, BVec2> {
 	@Override
 	public String toString() {
 		return "[" + x() + ", " + y() + "]";
+	}
+
+	@Override
+	public BVec2 equals(Vec2 other) {
+		return BVec.BVec2(x() == other.x(), y() == other.y());
+	}
+
+	@Override
+	public BVec2 notEqual(Vec2 other) {
+		return BVec.BVec2(x() != other.x(), y() != other.y());
+	}
+
+	@Override
+	public BVec2 bigger(Vec2 other) {
+		return BVec.BVec2(x() > other.x(), y() > other.y());
+	}
+
+	@Override
+	public BVec2 biggerEqual(Vec2 other) {
+		return BVec.BVec2(x() >= other.x(), y() >= other.y());
+	}
+
+	@Override
+	public BVec2 smaller(Vec2 other) {
+		return BVec.BVec2(x() < other.x(), y() < other.y());
+	}
+
+	@Override
+	public BVec2 smallerEqual(Vec2 other) {
+		return BVec.BVec2(x() <= other.x(), y() <= other.y());
 	}
 
 	@Override

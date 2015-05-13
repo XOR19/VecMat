@@ -13,7 +13,8 @@ import xor.newvecmat.Utils;
 import xor.newvecmat.vec.VecIterator;
 import xor.newvecmat.vec.Vec_base;
 
-public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
+public abstract class BVec<T extends BVec<T>> implements
+		Vec_base<T, T, Boolean> {
 
 	public abstract boolean get(int index);
 
@@ -67,10 +68,11 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 	}
 
 	@Override
-	public void set(CharSequence t, Vec_base<?, Boolean> value) {
+	public void set(CharSequence t, Vec_base<?, ?, Boolean> value) {
 		final int size = t.length();
 		if (Utils.CHECKS && size != value.dim()) {
-			throw new IllegalArgumentException("String length have to equal vector length");
+			throw new IllegalArgumentException(
+					"String length have to equal vector length");
 		}
 		if (value instanceof BVec<?>) {
 			BVec<?> v = (BVec<?>) value;
@@ -96,15 +98,16 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 	}
 
 	@Override
-	public void set(Vec_base<?, Boolean> value, int... indices) {
+	public void set(Vec_base<?, ?, Boolean> value, int... indices) {
 		set(indices, value);
 	}
 
 	@Override
-	public void set(int[] indices, Vec_base<?, Boolean> value) {
+	public void set(int[] indices, Vec_base<?, ?, Boolean> value) {
 		final int size = indices.length;
 		if (Utils.CHECKS && size != value.dim()) {
-			throw new IllegalArgumentException("indices length have to equal vector length");
+			throw new IllegalArgumentException(
+					"indices length have to equal vector length");
 		}
 		if (value instanceof BVec<?>) {
 			BVec<?> v = (BVec<?>) value;
@@ -154,7 +157,7 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 	public T invert() {
 		return forEach(COMP_OPS.INVERT_B);
 	}
-	
+
 	public boolean any() {
 		final int size = dim();
 		for (int i = 0; i < size; i++) {
@@ -233,11 +236,41 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 				return false;
 		return true;
 	}
-	
+
 	@Override
 	public abstract T clone();
-	
+
 	protected abstract T _new();
+
+	@Override
+	public T equals(T other) {
+		final int size = dim();
+		if (Utils.CHECKS) {
+			if (size != other.dim())
+				throw new IllegalArgumentException(
+						"In order to compare two BVectors they have to be of the same dimension!");
+		}
+		T ret = _new();
+		for (int i = 0; i < size; i++) {
+			ret.set(i, get(i) == other.get(i));
+		}
+		return ret;
+	}
+
+	@Override
+	public T notEqual(T other) {
+		final int size = dim();
+		if (Utils.CHECKS) {
+			if (size != other.dim())
+				throw new IllegalArgumentException(
+						"In order to compare two BVectors they have to be of the same dimension!");
+		}
+		T ret = _new();
+		for (int i = 0; i < size; i++) {
+			ret.set(i, get(i) != other.get(i));
+		}
+		return ret;
+	}
 
 	protected T forEach(Func1_B f) {
 		T ret = _new();
@@ -253,7 +286,8 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 		final int size = dim();
 		if (Utils.CHECKS) {
 			if (size != v.dim())
-				throw new IllegalArgumentException("In order to combine two BVectors they have to be of the same dimension!");
+				throw new IllegalArgumentException(
+						"In order to combine two BVectors they have to be of the same dimension!");
 		}
 		for (int i = 0; i < size; i++) {
 			ret.set(i, f.calc(get(i), v.get(i)));
@@ -275,7 +309,8 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 		final int size = dim();
 		if (Utils.CHECKS) {
 			if (size != v2.dim() || size != v3.dim())
-				throw new IllegalArgumentException("In order to combine three BVectors they have to be of the same dimension!");
+				throw new IllegalArgumentException(
+						"In order to combine three BVectors they have to be of the same dimension!");
 		}
 		for (int i = 0; i < size; i++) {
 			ret.set(i, f.calc(get(i), v2.get(i), v3.get(i)));
@@ -288,7 +323,8 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 		final int size = dim();
 		if (Utils.CHECKS) {
 			if (size != v.dim())
-				throw new IllegalArgumentException("In order to combine two BVectors they have to be of the same dimension!");
+				throw new IllegalArgumentException(
+						"In order to combine two BVectors they have to be of the same dimension!");
 		}
 		for (int i = 0; i < size; i++) {
 			ret.set(i, f.calc(get(i), v.get(i), n));
@@ -654,7 +690,8 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 		return BVecX(a);
 	}
 
-	public static <V extends BVec<V>> V BVecXfixed(int dimension, boolean... initial) {
+	public static <V extends BVec<V>> V BVecXfixed(int dimension,
+			boolean... initial) {
 		boolean[] a = new boolean[dimension];
 		int b = initial.length;
 		System.arraycopy(initial, 0, a, 0, (dimension <= b) ? dimension : b);
@@ -689,7 +726,8 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 		return BVecX_checked(v, indices);
 	}
 
-	protected static <V extends BVec<V>> V BVecX_checked(BVec<?> v, int[] indices) {
+	protected static <V extends BVec<V>> V BVecX_checked(BVec<?> v,
+			int[] indices) {
 		switch (indices.length) {
 		case 0:
 			throw new IllegalArgumentException();
@@ -717,7 +755,8 @@ public abstract class BVec<T extends BVec<T>> implements Vec_base<T, Boolean> {
 		return BVecX_checked(array, indices);
 	}
 
-	protected static <V extends BVec<V>> V BVecX_checked(boolean[] array, int[] indices) {
+	protected static <V extends BVec<V>> V BVecX_checked(boolean[] array,
+			int[] indices) {
 		switch (indices.length) {
 		case 0:
 			throw new IllegalArgumentException();

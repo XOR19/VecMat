@@ -72,7 +72,7 @@ public abstract class Vec<T extends Vec<T, B>, B extends BVec<B>> implements Vec
 	}
 
 	@Override
-	public void set(CharSequence t, Vec_base<?, Float> value) {
+	public void set(CharSequence t, Vec_base<?, ?, Float> value) {
 		final int size = t.length();
 		if (Utils.CHECKS && size != value.dim()) {
 			throw new IllegalArgumentException("String length have to equal vector length");
@@ -101,12 +101,12 @@ public abstract class Vec<T extends Vec<T, B>, B extends BVec<B>> implements Vec
 	}
 
 	@Override
-	public void set(Vec_base<?, Float> value, int... indices) {
+	public void set(Vec_base<?, ?, Float> value, int... indices) {
 		set(indices, value);
 	}
 
 	@Override
-	public void set(int[] indices, Vec_base<?, Float> value) {
+	public void set(int[] indices, Vec_base<?, ?, Float> value) {
 		final int size = indices.length;
 		if (Utils.CHECKS && size != value.dim()) {
 			throw new IllegalArgumentException("indices length have to equal vector length");

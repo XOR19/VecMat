@@ -4,6 +4,7 @@ import xor.newvecmat.COMP_OPS.Func1_I;
 import xor.newvecmat.COMP_OPS.Func2_I;
 import xor.newvecmat.COMP_OPS.Func3_I;
 import xor.newvecmat.VecMath;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVec1;
 
 public abstract class IVec1 extends IVec<IVec1, BVec1> {
@@ -170,6 +171,36 @@ public abstract class IVec1 extends IVec<IVec1, BVec1> {
 		return "[" + x() + "]";
 	}
 
+	@Override
+	public BVec1 equals(IVec1 other) {
+		return BVec.BVec1(x() == other.x());
+	}
+
+	@Override
+	public BVec1 notEqual(IVec1 other) {
+		return BVec.BVec1(x() != other.x());
+	}
+
+	@Override
+	public BVec1 bigger(IVec1 other) {
+		return BVec.BVec1(x() > other.x());
+	}
+
+	@Override
+	public BVec1 biggerEqual(IVec1 other) {
+		return BVec.BVec1(x() >= other.x());
+	}
+
+	@Override
+	public BVec1 smaller(IVec1 other) {
+		return BVec.BVec1(x() < other.x());
+	}
+
+	@Override
+	public BVec1 smallerEqual(IVec1 other) {
+		return BVec.BVec1(x() <= other.x());
+	}
+	
 	@Override
 	protected IVec1 forEach(Func1_I f) {
 		int x = f.calc(x());

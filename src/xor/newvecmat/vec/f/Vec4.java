@@ -4,6 +4,7 @@ import xor.newvecmat.COMP_OPS.Func1_F;
 import xor.newvecmat.COMP_OPS.Func2_F;
 import xor.newvecmat.COMP_OPS.Func3_F;
 import xor.newvecmat.VecMath;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVec4;
 
 public abstract class Vec4 extends Vec<Vec4, BVec4> {
@@ -252,6 +253,36 @@ public abstract class Vec4 extends Vec<Vec4, BVec4> {
 	@Override
 	public String toString() {
 		return "[" + x() + ", " + y() + ", " + z() + ", " + w() + "]";
+	}
+	
+	@Override
+	public BVec4 equals(Vec4 other) {
+		return BVec.BVec4(x() == other.x(), y() == other.y(), z() == other.z(), w() == other.w());
+	}
+
+	@Override
+	public BVec4 notEqual(Vec4 other) {
+		return BVec.BVec4(x() != other.x(), y() != other.y(), z() != other.z(), w() != other.w());
+	}
+
+	@Override
+	public BVec4 bigger(Vec4 other) {
+		return BVec.BVec4(x() > other.x(), y() > other.y(), z() > other.z(), w() > other.w());
+	}
+
+	@Override
+	public BVec4 biggerEqual(Vec4 other) {
+		return BVec.BVec4(x() >= other.x(), y() >= other.y(), z() >= other.z(), w() >= other.w());
+	}
+
+	@Override
+	public BVec4 smaller(Vec4 other) {
+		return BVec.BVec4(x() < other.x(), y() < other.y(), z() < other.z(), w() < other.w());
+	}
+
+	@Override
+	public BVec4 smallerEqual(Vec4 other) {
+		return BVec.BVec4(x() <= other.x(), y() <= other.y(), z() <= other.z(), w() <= other.w());
 	}
 
 	@Override

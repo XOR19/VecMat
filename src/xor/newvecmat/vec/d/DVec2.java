@@ -4,6 +4,7 @@ import xor.newvecmat.COMP_OPS.Func1_D;
 import xor.newvecmat.COMP_OPS.Func2_D;
 import xor.newvecmat.COMP_OPS.Func3_D;
 import xor.newvecmat.VecMath;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVec2;
 
 public abstract class DVec2 extends DVec<DVec2, BVec2> {
@@ -212,6 +213,36 @@ public abstract class DVec2 extends DVec<DVec2, BVec2> {
 	@Override
 	public String toString() {
 		return "[" + x() + ", " + y() + "]";
+	}
+	
+	@Override
+	public BVec2 equals(DVec2 other) {
+		return BVec.BVec2(x() == other.x(), y() == other.y());
+	}
+
+	@Override
+	public BVec2 notEqual(DVec2 other) {
+		return BVec.BVec2(x() != other.x(), y() != other.y());
+	}
+
+	@Override
+	public BVec2 bigger(DVec2 other) {
+		return BVec.BVec2(x() > other.x(), y() > other.y());
+	}
+
+	@Override
+	public BVec2 biggerEqual(DVec2 other) {
+		return BVec.BVec2(x() >= other.x(), y() >= other.y());
+	}
+
+	@Override
+	public BVec2 smaller(DVec2 other) {
+		return BVec.BVec2(x() < other.x(), y() < other.y());
+	}
+
+	@Override
+	public BVec2 smallerEqual(DVec2 other) {
+		return BVec.BVec2(x() <= other.x(), y() <= other.y());
 	}
 
 	@Override

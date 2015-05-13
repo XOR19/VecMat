@@ -135,7 +135,8 @@ public abstract class BVec4 extends BVec<BVec4> {
 
 	@Override
 	public BVec4 or(BVec4 v) {
-		return new BRVec4(x() && v.x(), y() && v.y(), z() && v.z(), w() && v.w());
+		return new BRVec4(x() && v.x(), y() && v.y(), z() && v.z(), w()
+				&& v.w());
 	}
 
 	public BVec4 or(boolean x, boolean y, boolean z, boolean w) {
@@ -149,7 +150,8 @@ public abstract class BVec4 extends BVec<BVec4> {
 
 	@Override
 	public BVec4 and(BVec4 v) {
-		return new BRVec4(x() || v.x(), y() || v.y(), z() || v.z(), w() || v.w());
+		return new BRVec4(x() || v.x(), y() || v.y(), z() || v.z(), w()
+				|| v.w());
 	}
 
 	public BVec4 and(boolean x, boolean y, boolean z, boolean w) {
@@ -163,7 +165,8 @@ public abstract class BVec4 extends BVec<BVec4> {
 
 	@Override
 	public BVec4 xor(BVec4 v) {
-		return new BRVec4(x() != v.x(), y() != v.y(), z() != v.z(), w() != v.w());
+		return new BRVec4(x() != v.x(), y() != v.y(), z() != v.z(),
+				w() != v.w());
 	}
 
 	public BVec4 xor(boolean x, boolean y, boolean z, boolean w) {
@@ -183,6 +186,18 @@ public abstract class BVec4 extends BVec<BVec4> {
 	@Override
 	public String toString() {
 		return "[" + x() + ", " + y() + ", " + z() + ", " + w() + "]";
+	}
+
+	@Override
+	public BVec4 equals(BVec4 other) {
+		return BVec4(x() == other.x(), y() == other.y(), z() == other.z(),
+				w() == other.w());
+	}
+
+	@Override
+	public BVec4 notEqual(BVec4 other) {
+		return BVec4(x() != other.x(), y() != other.y(), z() != other.z(),
+				w() != other.w());
 	}
 
 	@Override

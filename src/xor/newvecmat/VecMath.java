@@ -9,6 +9,7 @@ import xor.newvecmat.mat.f.Mat3;
 import xor.newvecmat.mat.f.Mat4;
 import xor.newvecmat.mat.f.MatN;
 import xor.newvecmat.quat.Quat_base;
+import xor.newvecmat.vec.Vec_base;
 import xor.newvecmat.vec.Vec_cross;
 import xor.newvecmat.vec.Vec_float;
 import xor.newvecmat.vec.Vec_int;
@@ -1690,4 +1691,28 @@ public final class VecMath {
 		return Mat.MatX(size, mat);
 	}
 
+	public static <V extends Vec_base<V, B, ?>, B extends BVec<B>> B equal(V v1, V v2){
+		return v1.equals(v2);
+	}
+	
+	public static <V extends Vec_base<V, B, ?>, B extends BVec<B>> B notEqual(V v1, V v2){
+		return v1.notEqual(v2);
+	}
+	
+	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B smaller(V v1, V v2){
+		return v1.smaller(v2);
+	}
+	
+	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B smallerEqual(V v1, V v2){
+		return v1.smallerEqual(v2);
+	}
+	
+	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B bigger(V v1, V v2){
+		return v1.bigger(v2);
+	}
+	
+	public static <V extends Vec_numeric<V, B, ?>, B extends BVec<B>> B biggerEqual(V v1, V v2){
+		return v1.biggerEqual(v2);
+	}
+	
 }

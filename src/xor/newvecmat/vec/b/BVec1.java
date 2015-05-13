@@ -114,6 +114,16 @@ public abstract class BVec1 extends BVec<BVec1> {
 	}
 
 	@Override
+	public BVec1 equals(BVec1 other) {
+		return BVec1(x() == other.x());
+	}
+
+	@Override
+	public BVec1 notEqual(BVec1 other) {
+		return BVec1(x() != other.x());
+	}
+
+	@Override
 	protected BVec1 forEach(Func1_B f) {
 		boolean x = f.calc(x());
 		return new BRVec1(x);

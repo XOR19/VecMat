@@ -2,7 +2,7 @@ package xor.newvecmat.vec;
 
 import xor.newvecmat.vec.b.BVec;
 
-public interface Vec_numeric<T extends Vec_numeric<T, B, N>, B extends BVec<B>, N extends Number> extends Vec_base<T, N> {
+public interface Vec_numeric<T extends Vec_numeric<T, B, N>, B extends BVec<B>, N extends Number> extends Vec_base<T, B, N> {
 	
 	@Override
 	public abstract Vec_numeric<?, ?, N> getS(CharSequence t);
@@ -73,5 +73,13 @@ public interface Vec_numeric<T extends Vec_numeric<T, B, N>, B extends BVec<B>, 
 	public abstract double distance(T v);
 	
 	public abstract double dot(T v);
+	
+	public abstract B bigger(T other);
+	
+	public abstract B biggerEqual(T other);
+	
+	public abstract B smaller(T other);
+	
+	public abstract B smallerEqual(T other);
 	
 }

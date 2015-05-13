@@ -166,6 +166,16 @@ public abstract class BVec3 extends BVec<BVec3> {
 	}
 
 	@Override
+	public BVec3 equals(BVec3 other) {
+		return BVec3(x() == other.x(), y() == other.y(), z() == other.z());
+	}
+
+	@Override
+	public BVec3 notEqual(BVec3 other) {
+		return BVec3(x() != other.x(), y() != other.y(), z() != other.z());
+	}
+	
+	@Override
 	protected BVec3 forEach(Func1_B f) {
 		boolean x = f.calc(x());
 		boolean y = f.calc(y());

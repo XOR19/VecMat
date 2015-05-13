@@ -5,7 +5,7 @@ import java.util.NoSuchElementException;
 
 public class VecIterator<V> implements ListIterator<V> {
 
-	private Vec_base<?, V> vec;
+	private Vec_base<?, ?, V> vec;
 
 	private final int max;
 
@@ -13,7 +13,7 @@ public class VecIterator<V> implements ListIterator<V> {
 
 	private int l = -1;
 
-	public VecIterator(Vec_base<?, V> vec) {
+	public VecIterator(Vec_base<?, ?, V> vec) {
 		this.vec = vec;
 		max = vec.dim();
 		i = 0;

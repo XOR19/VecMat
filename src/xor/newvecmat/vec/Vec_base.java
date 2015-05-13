@@ -3,7 +3,9 @@ package xor.newvecmat.vec;
 import java.nio.ByteBuffer;
 import java.util.ListIterator;
 
-public interface Vec_base<T extends Vec_base<T, V>, V> extends Cloneable, Iterable<V> {
+import xor.newvecmat.vec.b.BVec;
+
+public interface Vec_base<T extends Vec_base<T, B, V>, B extends BVec<B>, V> extends Cloneable, Iterable<V> {
 
 	public abstract int dim();
 
@@ -15,15 +17,15 @@ public interface Vec_base<T extends Vec_base<T, V>, V> extends Cloneable, Iterab
 
 	public abstract void set(char c, V value);
 
-	public abstract Vec_base<?, V> getS(CharSequence t);
+	public abstract Vec_base<?, ?, V> getS(CharSequence t);
 
-	public abstract void set(CharSequence t, Vec_base<?, V> value);
+	public abstract void set(CharSequence t, Vec_base<?, ?, V> value);
 
-	public abstract Vec_base<?, V> getI(int... indices);
+	public abstract Vec_base<?, ?, V> getI(int... indices);
 
-	public abstract void set(Vec_base<?, V> value, int... indices);
+	public abstract void set(Vec_base<?, ?, V> value, int... indices);
 
-	public abstract void set(int[] indices, Vec_base<?, V> value);
+	public abstract void set(int[] indices, Vec_base<?, ?, V> value);
 
 	public abstract void setTo(T value);
 
@@ -40,4 +42,8 @@ public interface Vec_base<T extends Vec_base<T, V>, V> extends Cloneable, Iterab
 	
 	public abstract void writeTo(ByteBuffer byteBuffer);
 
+	public abstract B equals(T other);
+	
+	public abstract B notEqual(T other);
+	
 }

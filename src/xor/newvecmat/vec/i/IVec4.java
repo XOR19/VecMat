@@ -4,6 +4,7 @@ import xor.newvecmat.COMP_OPS.Func1_I;
 import xor.newvecmat.COMP_OPS.Func2_I;
 import xor.newvecmat.COMP_OPS.Func3_I;
 import xor.newvecmat.VecMath;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVec4;
 
 public abstract class IVec4 extends IVec<IVec4, BVec4> {
@@ -254,6 +255,36 @@ public abstract class IVec4 extends IVec<IVec4, BVec4> {
 		return "[" + x() + ", " + y() + ", " + z() + ", " + w() + "]";
 	}
 
+	@Override
+	public BVec4 equals(IVec4 other) {
+		return BVec.BVec4(x() == other.x(), y() == other.y(), z() == other.z(), w() == other.w());
+	}
+
+	@Override
+	public BVec4 notEqual(IVec4 other) {
+		return BVec.BVec4(x() != other.x(), y() != other.y(), z() != other.z(), w() != other.w());
+	}
+
+	@Override
+	public BVec4 bigger(IVec4 other) {
+		return BVec.BVec4(x() > other.x(), y() > other.y(), z() > other.z(), w() > other.w());
+	}
+
+	@Override
+	public BVec4 biggerEqual(IVec4 other) {
+		return BVec.BVec4(x() >= other.x(), y() >= other.y(), z() >= other.z(), w() >= other.w());
+	}
+
+	@Override
+	public BVec4 smaller(IVec4 other) {
+		return BVec.BVec4(x() < other.x(), y() < other.y(), z() < other.z(), w() < other.w());
+	}
+
+	@Override
+	public BVec4 smallerEqual(IVec4 other) {
+		return BVec.BVec4(x() <= other.x(), y() <= other.y(), z() <= other.z(), w() <= other.w());
+	}
+	
 	@Override
 	protected IVec4 forEach(Func1_I f) {
 		int x = f.calc(x());

@@ -186,7 +186,9 @@ public abstract class Mat_base<T extends Mat_base<T, T2, V, N>, T2 extends Mat_b
 
 	public abstract void writeTo(ByteBuffer byteBuffer);
 
-	public abstract void writeToGL(ByteBuffer byteBuffer);
+	public void writeToGL(ByteBuffer byteBuffer){
+		transpose().writeTo(byteBuffer);
+	}
 
 	@Override
 	public int hashCode() {

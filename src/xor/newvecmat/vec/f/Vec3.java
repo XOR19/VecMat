@@ -5,6 +5,7 @@ import xor.newvecmat.COMP_OPS.Func2_F;
 import xor.newvecmat.COMP_OPS.Func3_F;
 import xor.newvecmat.VecMath;
 import xor.newvecmat.vec.Vec_cross;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVec3;
 
 public abstract class Vec3 extends Vec<Vec3, BVec3> implements Vec_cross<Vec3, BVec3, Float> {
@@ -233,6 +234,36 @@ public abstract class Vec3 extends Vec<Vec3, BVec3> implements Vec_cross<Vec3, B
 	@Override
 	public String toString() {
 		return "[" + x() + ", " + y() + ", " + z() + "]";
+	}
+	
+	@Override
+	public BVec3 equals(Vec3 other) {
+		return BVec.BVec3(x() == other.x(), y() == other.y(), z() == other.z());
+	}
+
+	@Override
+	public BVec3 notEqual(Vec3 other) {
+		return BVec.BVec3(x() != other.x(), y() != other.y(), z() != other.z());
+	}
+
+	@Override
+	public BVec3 bigger(Vec3 other) {
+		return BVec.BVec3(x() > other.x(), y() > other.y(), z() > other.z());
+	}
+
+	@Override
+	public BVec3 biggerEqual(Vec3 other) {
+		return BVec.BVec3(x() >= other.x(), y() >= other.y(), z() >= other.z());
+	}
+
+	@Override
+	public BVec3 smaller(Vec3 other) {
+		return BVec.BVec3(x() < other.x(), y() < other.y(), z() < other.z());
+	}
+
+	@Override
+	public BVec3 smallerEqual(Vec3 other) {
+		return BVec.BVec3(x() <= other.x(), y() <= other.y(), z() <= other.z());
 	}
 
 	public Vec3 cross(Vec3 v) {

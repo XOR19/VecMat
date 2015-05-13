@@ -1,5 +1,7 @@
 package xor.newvecmat.vec.l;
 
+import xor.newvecmat.Utils;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVecN;
 
 
@@ -19,6 +21,96 @@ public abstract class LVecN extends LVec<LVecN, BVecN> {
 	@Override
 	protected LVecN _new() {
 		return new LRVecN(dim());
+	}
+	
+	@Override
+	public BVecN equals(LVecN other) {
+		final int size = dim();
+		if (Utils.CHECKS) {
+			if (size != other.dim())
+				throw new IllegalArgumentException(
+						"In order to compare two Vectors they have to be of the same dimension!");
+		}
+		BVecN ret = BVec.BVecX(size);
+		for (int i = 0; i < size; i++) {
+			ret.set(i, get(i) == other.get(i));
+		}
+		return ret;
+	}
+
+	@Override
+	public BVecN notEqual(LVecN other) {
+		final int size = dim();
+		if (Utils.CHECKS) {
+			if (size != other.dim())
+				throw new IllegalArgumentException(
+						"In order to compare two Vectors they have to be of the same dimension!");
+		}
+		BVecN ret = BVec.BVecX(size);
+		for (int i = 0; i < size; i++) {
+			ret.set(i, get(i) != other.get(i));
+		}
+		return ret;
+	}
+
+	@Override
+	public BVecN bigger(LVecN other) {
+		final int size = dim();
+		if (Utils.CHECKS) {
+			if (size != other.dim())
+				throw new IllegalArgumentException(
+						"In order to compare two Vectors they have to be of the same dimension!");
+		}
+		BVecN ret = BVec.BVecX(size);
+		for (int i = 0; i < size; i++) {
+			ret.set(i, get(i) > other.get(i));
+		}
+		return ret;
+	}
+
+	@Override
+	public BVecN biggerEqual(LVecN other) {
+		final int size = dim();
+		if (Utils.CHECKS) {
+			if (size != other.dim())
+				throw new IllegalArgumentException(
+						"In order to compare two Vectors they have to be of the same dimension!");
+		}
+		BVecN ret = BVec.BVecX(size);
+		for (int i = 0; i < size; i++) {
+			ret.set(i, get(i) >= other.get(i));
+		}
+		return ret;
+	}
+
+	@Override
+	public BVecN smaller(LVecN other) {
+		final int size = dim();
+		if (Utils.CHECKS) {
+			if (size != other.dim())
+				throw new IllegalArgumentException(
+						"In order to compare two Vectors they have to be of the same dimension!");
+		}
+		BVecN ret = BVec.BVecX(size);
+		for (int i = 0; i < size; i++) {
+			ret.set(i, get(i) < other.get(i));
+		}
+		return ret;
+	}
+
+	@Override
+	public BVecN smallerEqual(LVecN other) {
+		final int size = dim();
+		if (Utils.CHECKS) {
+			if (size != other.dim())
+				throw new IllegalArgumentException(
+						"In order to compare two Vectors they have to be of the same dimension!");
+		}
+		BVecN ret = BVec.BVecX(size);
+		for (int i = 0; i < size; i++) {
+			ret.set(i, get(i) <= other.get(i));
+		}
+		return ret;
 	}
 
 }

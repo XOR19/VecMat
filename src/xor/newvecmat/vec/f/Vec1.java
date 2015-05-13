@@ -1,9 +1,10 @@
 package xor.newvecmat.vec.f;
 
-import xor.newvecmat.VecMath;
 import xor.newvecmat.COMP_OPS.Func1_F;
 import xor.newvecmat.COMP_OPS.Func2_F;
 import xor.newvecmat.COMP_OPS.Func3_F;
+import xor.newvecmat.VecMath;
+import xor.newvecmat.vec.b.BVec;
 import xor.newvecmat.vec.b.BVec1;
 
 public abstract class Vec1 extends Vec<Vec1, BVec1> {
@@ -170,6 +171,36 @@ public abstract class Vec1 extends Vec<Vec1, BVec1> {
 		return "[" + x() + "]";
 	}
 
+	@Override
+	public BVec1 equals(Vec1 other) {
+		return BVec.BVec1(x() == other.x());
+	}
+
+	@Override
+	public BVec1 notEqual(Vec1 other) {
+		return BVec.BVec1(x() != other.x());
+	}
+
+	@Override
+	public BVec1 bigger(Vec1 other) {
+		return BVec.BVec1(x() > other.x());
+	}
+
+	@Override
+	public BVec1 biggerEqual(Vec1 other) {
+		return BVec.BVec1(x() >= other.x());
+	}
+
+	@Override
+	public BVec1 smaller(Vec1 other) {
+		return BVec.BVec1(x() < other.x());
+	}
+
+	@Override
+	public BVec1 smallerEqual(Vec1 other) {
+		return BVec.BVec1(x() <= other.x());
+	}
+	
 	@Override
 	protected Vec1 forEach(Func1_F f) {
 		float x = f.calc(x());
