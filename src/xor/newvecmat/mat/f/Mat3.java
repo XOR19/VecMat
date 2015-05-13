@@ -1,6 +1,8 @@
 package xor.newvecmat.mat.f;
 
+import xor.newvecmat.VecMath;
 import xor.newvecmat.vec.f.Vec;
+import xor.newvecmat.vec.f.Vec2;
 import xor.newvecmat.vec.f.Vec3;
 
 public abstract class Mat3 extends Mat<Mat3, Mat3, Vec3> {
@@ -298,6 +300,172 @@ public abstract class Mat3 extends Mat<Mat3, Mat3, Vec3> {
 			return Mat3.this;
 		}
 
+	}
+	
+	public Mat3 translate(Vec2 v) {
+		return mul(createTranslationMarix(v));
+	}
+
+	public Mat3 translate(float x, float y) {
+		return mul(createTranslationMarix(x, y));
+	}
+
+	public Mat3 rotate(float a, Vec3 axis) {
+		return mul(createRotationMarix(a, axis));
+	}
+	
+	public Mat3 rotate(float a, float x, float y, float z) {
+		return mul(createRotationMarix(a, x, y, z));
+	}
+
+	public Mat3 rotateRad(float a, Vec3 axis) {
+		return mul(createRotationMarixRad(a, axis));
+	}
+	
+	public Mat3 rotateRad(float a, float x, float y, float z) {
+		return mul(createRotationMarixRad(a, x, y, z));
+	}
+
+	public Mat3 scale(Vec2 v) {
+		return mul(createScaleMarix(v));
+	}
+
+	public Mat3 scale(float x, float y) {
+		return mul(createScaleMarix(x, y));
+	}
+	
+	public Mat3 scale(Vec3 v) {
+		return mul(createScaleMarix(v));
+	}
+
+	public Mat3 scale(float x, float y, float z) {
+		return mul(createScaleMarix(x, y, z));
+	}
+
+	public Mat3 rotateEuler(Vec3 v) {
+		return mul(createEulerRotationMarix(v));
+	}
+
+	public Mat3 rotateEuler(float x, float y, float z) {
+		return mul(createEulerRotationMarix(x, y, z));
+	}
+
+	public Mat3 rotateEulerRad(Vec3 v) {
+		return mul(createEulerRotationMarixRad(v));
+	}
+
+	public Mat3 rotateEulerRad(float x, float y, float z) {
+		return mul(createEulerRotationMarixRad(x, y, z));
+	}
+	
+	public static Mat3 createTranslationMarix(Vec2 v) {
+		return createTranslationMarix(v.x(), v.y());
+	}
+
+	public static Mat3 createTranslationMarix(float x, float y) {
+		RMat3 m = new RMat3();
+		m.mat[0] = 1;
+		m.mat[4] = 1;
+		m.mat[8] = 1;
+		m.mat[6] = x;
+		m.mat[7] = y;
+		return m;
+	}
+
+	public static Mat3 createRotationMarix(float a, Vec3 axis){
+		return createRotationMarixRad((float) Math.toRadians(a), axis.x(), axis.y(), axis.z());
+	}
+	
+	public static Mat3 createRotationMarix(float a, float x, float y, float z) {
+		return createRotationMarixRad((float) Math.toRadians(a), x, y, z);
+	}
+
+	public static Mat3 createRotationMarixRad(float a, Vec3 axis){
+		return createRotationMarixRad(a, axis.x(), axis.y(), axis.z());
+	}
+	
+	public static Mat3 createRotationMarixRad(float a, float x, float y, float z) {
+		RMat3 m = new RMat3();
+		float c = (float) Math.cos(a);
+		float s = (float) Math.sin(a);
+		float c1 = 1 - c;
+		float l = x * x + y * y + z * z;
+		if (l != 1) {
+			l = VecMath.inversesqrt(l);
+			x *= l;
+			y *= l;
+			z *= l;
+		}
+		m.mat[0] = x * x * c1 + c;
+		m.mat[3] = x * y * c1 - z * s;
+		m.mat[6] = x * z * c1 + y * s;
+
+		m.mat[1] = y * x * c1 + z * s;
+		m.mat[4] = y * y * c1 + c;
+		m.mat[7] = y * z * c1 - x * s;
+
+		m.mat[2] = x * z * c1 - y * s;
+		m.mat[5] = y * z * c1 + x * s;
+		m.mat[8] = z * z * c1 + c;
+		return m;
+	}
+
+	public static Mat3 createScaleMarix(Vec2 v) {
+		return createScaleMarix(v.x(), v.y());
+	}
+
+	public static Mat3 createScaleMarix(float x, float y) {
+		RMat3 m = new RMat3();
+		m.mat[0] = x;
+		m.mat[4] = y;
+		m.mat[8] = 1;
+		return m;
+	}
+	
+	public static Mat3 createScaleMarix(Vec3 v) {
+		return createScaleMarix(v.x(), v.y(), v.z());
+	}
+
+	public static Mat3 createScaleMarix(float x, float y, float z) {
+		RMat3 m = new RMat3();
+		m.mat[0] = x;
+		m.mat[4] = y;
+		m.mat[8] = z;
+		return m;
+	}
+
+	public static Mat3 createEulerRotationMarix(Vec3 v) {
+		return createEulerRotationMarix(v.x(), v.y(), v.z());
+	}
+
+	public static Mat3 createEulerRotationMarix(float x, float y, float z) {
+		return createEulerRotationMarixRad((float) Math.toRadians(x), (float) Math.toRadians(y), (float) Math.toRadians(z));
+	}
+
+	public static Mat3 createEulerRotationMarixRad(Vec3 v) {
+		return createEulerRotationMarixRad(v.x(), v.y(), v.z());
+	}
+
+	public static Mat3 createEulerRotationMarixRad(float x, float y, float z) {
+		RMat3 m = new RMat3();
+		float cx = (float) Math.cos(x);
+		float sx = (float) Math.sin(x);
+		float cy = (float) Math.cos(y);
+		float sy = (float) Math.sin(y);
+		float cz = (float) Math.cos(z);
+		float sz = (float) Math.sin(z);
+		float cxsy = cx * sy;
+		float sxsy = sx * sy;
+		m.mat[0] = cy * cz;
+		m.mat[1] = -cy * sz;
+		m.mat[2] = sy;
+		m.mat[3] = cxsy * cz + cx * sz;
+		m.mat[4] = -cxsy * sz + cx * cz;
+		m.mat[5] = -sx * cy;
+		m.mat[6] = -sxsy * cz + sx * sz;
+		m.mat[7] = sxsy * sz + sx * cz;
+		m.mat[8] = cx * cy;
+		return m;
 	}
 
 }

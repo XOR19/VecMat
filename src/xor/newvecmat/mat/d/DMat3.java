@@ -1,7 +1,9 @@
 package xor.newvecmat.mat.d;
 
+import xor.newvecmat.VecMath;
 import xor.newvecmat.vec.d.DVec;
 import xor.newvecmat.vec.d.DVec3;
+import xor.newvecmat.vec.f.Vec2;
 
 public abstract class DMat3 extends DMat<DMat3, DMat3, DVec3> {
 
@@ -80,10 +82,10 @@ public abstract class DMat3 extends DMat<DMat3, DMat3, DVec3> {
 
 	@Override
 	public DMat3 pow(int y) {
-		if(y==0)
-			return Mat3();
+		if (y == 0)
+			return DMat3();
 		DMat3 m = this;
-		for(int i=1; i<y; i++){
+		for (int i = 1; i < y; i++) {
 			m = m.mul(this);
 		}
 		return m;
@@ -134,7 +136,8 @@ public abstract class DMat3 extends DMat<DMat3, DMat3, DVec3> {
 		final double t02 = get(0, 2);
 		final double t12 = get(1, 2);
 		final double t22 = get(2, 2);
-		return t00 * (t11 * t22 - t21 * t12) - t01 * (t10 * t22 - t12 * t20) + t02 * (t10 * t21 - t11 * t20);
+		return t00 * (t11 * t22 - t21 * t12) - t01 * (t10 * t22 - t12 * t20)
+				+ t02 * (t10 * t21 - t11 * t20);
 	}
 
 	@Override
@@ -208,7 +211,7 @@ public abstract class DMat3 extends DMat<DMat3, DMat3, DVec3> {
 		public void y(double y) {
 			DMat3.this.set(m, 1, y);
 		}
-		
+
 		@Override
 		public double z() {
 			return DMat3.this.get(m, 2);
@@ -258,7 +261,7 @@ public abstract class DMat3 extends DMat<DMat3, DMat3, DVec3> {
 		public void y(double y) {
 			DMat3.this.set(1, n, y);
 		}
-		
+
 		@Override
 		public double z() {
 			return DMat3.this.get(2, n);
@@ -298,6 +301,176 @@ public abstract class DMat3 extends DMat<DMat3, DMat3, DVec3> {
 			return DMat3.this;
 		}
 
+	}
+
+	public DMat3 translate(Vec2 v) {
+		return mul(createTranslationMarix(v));
+	}
+
+	public DMat3 translate(double x, double y) {
+		return mul(createTranslationMarix(x, y));
+	}
+
+	public DMat3 rotate(double a, DVec3 axis) {
+		return mul(createRotationMarix(a, axis));
+	}
+
+	public DMat3 rotate(double a, double x, double y, double z) {
+		return mul(createRotationMarix(a, x, y, z));
+	}
+
+	public DMat3 rotateRad(double a, DVec3 axis) {
+		return mul(createRotationMarixRad(a, axis));
+	}
+
+	public DMat3 rotateRad(double a, double x, double y, double z) {
+		return mul(createRotationMarixRad(a, x, y, z));
+	}
+
+	public DMat3 scale(Vec2 v) {
+		return mul(createScaleMarix(v));
+	}
+
+	public DMat3 scale(double x, double y) {
+		return mul(createScaleMarix(x, y));
+	}
+
+	public DMat3 scale(DVec3 v) {
+		return mul(createScaleMarix(v));
+	}
+
+	public DMat3 scale(double x, double y, double z) {
+		return mul(createScaleMarix(x, y, z));
+	}
+
+	public DMat3 rotateEuler(DVec3 v) {
+		return mul(createEulerRotationMarix(v));
+	}
+
+	public DMat3 rotateEuler(double x, double y, double z) {
+		return mul(createEulerRotationMarix(x, y, z));
+	}
+
+	public DMat3 rotateEulerRad(DVec3 v) {
+		return mul(createEulerRotationMarixRad(v));
+	}
+
+	public DMat3 rotateEulerRad(double x, double y, double z) {
+		return mul(createEulerRotationMarixRad(x, y, z));
+	}
+
+	public static DMat3 createTranslationMarix(Vec2 v) {
+		return createTranslationMarix(v.x(), v.y());
+	}
+
+	public static DMat3 createTranslationMarix(double x, double y) {
+		DRMat3 m = new DRMat3();
+		m.mat[0] = 1;
+		m.mat[4] = 1;
+		m.mat[8] = 1;
+		m.mat[6] = x;
+		m.mat[7] = y;
+		return m;
+	}
+
+	public static DMat3 createRotationMarix(double a, DVec3 axis) {
+		return createRotationMarixRad((double) Math.toRadians(a), axis.x(),
+				axis.y(), axis.z());
+	}
+
+	public static DMat3 createRotationMarix(double a, double x, double y,
+			double z) {
+		return createRotationMarixRad((double) Math.toRadians(a), x, y, z);
+	}
+
+	public static DMat3 createRotationMarixRad(double a, DVec3 axis) {
+		return createRotationMarixRad(a, axis.x(), axis.y(), axis.z());
+	}
+
+	public static DMat3 createRotationMarixRad(double a, double x, double y,
+			double z) {
+		DRMat3 m = new DRMat3();
+		double c = (double) Math.cos(a);
+		double s = (double) Math.sin(a);
+		double c1 = 1 - c;
+		double l = x * x + y * y + z * z;
+		if (l != 1) {
+			l = VecMath.inversesqrt(l);
+			x *= l;
+			y *= l;
+			z *= l;
+		}
+		m.mat[0] = x * x * c1 + c;
+		m.mat[3] = x * y * c1 - z * s;
+		m.mat[6] = x * z * c1 + y * s;
+
+		m.mat[1] = y * x * c1 + z * s;
+		m.mat[4] = y * y * c1 + c;
+		m.mat[7] = y * z * c1 - x * s;
+
+		m.mat[2] = x * z * c1 - y * s;
+		m.mat[5] = y * z * c1 + x * s;
+		m.mat[8] = z * z * c1 + c;
+		return m;
+	}
+
+	public static DMat3 createScaleMarix(Vec2 v) {
+		return createScaleMarix(v.x(), v.y());
+	}
+
+	public static DMat3 createScaleMarix(double x, double y) {
+		DRMat3 m = new DRMat3();
+		m.mat[0] = x;
+		m.mat[4] = y;
+		m.mat[8] = 1;
+		return m;
+	}
+
+	public static DMat3 createScaleMarix(DVec3 v) {
+		return createScaleMarix(v.x(), v.y(), v.z());
+	}
+
+	public static DMat3 createScaleMarix(double x, double y, double z) {
+		DRMat3 m = new DRMat3();
+		m.mat[0] = x;
+		m.mat[4] = y;
+		m.mat[8] = z;
+		return m;
+	}
+
+	public static DMat3 createEulerRotationMarix(DVec3 v) {
+		return createEulerRotationMarix(v.x(), v.y(), v.z());
+	}
+
+	public static DMat3 createEulerRotationMarix(double x, double y, double z) {
+		return createEulerRotationMarixRad((double) Math.toRadians(x),
+				(double) Math.toRadians(y), (double) Math.toRadians(z));
+	}
+
+	public static DMat3 createEulerRotationMarixRad(DVec3 v) {
+		return createEulerRotationMarixRad(v.x(), v.y(), v.z());
+	}
+
+	public static DMat3 createEulerRotationMarixRad(double x, double y, double z) {
+		DRMat3 m = new DRMat3();
+		double cx = (double) Math.cos(x);
+		double sx = (double) Math.sin(x);
+		double cy = (double) Math.cos(y);
+		double sy = (double) Math.sin(y);
+		double cz = (double) Math.cos(z);
+		double sz = (double) Math.sin(z);
+		double cxsy = cx * sy;
+		double sxsy = sx * sy;
+		m.mat[0] = cy * cz;
+		m.mat[1] = -cy * sz;
+		m.mat[2] = sy;
+		m.mat[3] = cxsy * cz + cx * sz;
+		m.mat[4] = -cxsy * sz + cx * cz;
+		m.mat[5] = -sx * cy;
+		m.mat[6] = -sxsy * cz + sx * sz;
+		m.mat[7] = sxsy * sz + sx * cz;
+		m.mat[8] = cx * cy;
+		return m;
 	}
 
 }

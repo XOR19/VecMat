@@ -136,7 +136,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		final int size = v.m();
 		if (size != n())
 			throw new IllegalArgumentException();
-		DMat<?, ?, ?> mat = MatX(m, n);
+		DMat<?, ?, ?> mat = DMatX(m, n);
 		if(v instanceof DMat){
 			DMat<?, ?, ?> mv = (DMat<?, ?, ?>)v;
 			for (int i = 0; i < m; i++) {
@@ -373,19 +373,19 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 	}
 
 	
-	public static DMat1 Mat1() {
+	public static DMat1 DMat1() {
 		return new DRMat1(1);
 	}
 
-	public static DMat1 Mat1(double scale) {
+	public static DMat1 DMat1(double scale) {
 		return new DRMat1(scale);
 	}
 	
-	public static DMat2 Mat2() {
+	public static DMat2 DMat2() {
 		return new DRMat2(new double[]{1, 0, 0, 1});
 	}
 
-	public static DMat2 Mat2(double scale) {
+	public static DMat2 DMat2(double scale) {
 		return new DRMat2(new double[]{scale, 0, 0, scale});
 	}
 
@@ -393,7 +393,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat2(new double[]{fill, fill, fill, fill});
 	}
 
-	public static DMat2 Mat2(double m00, double m10, double m01, double m11) {
+	public static DMat2 DMat2(double m00, double m10, double m01, double m11) {
 		return new DRMat2(new double[]{m00, m10, m01, m11});
 	}
 
@@ -401,7 +401,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat2(new double[]{m00, m10, m01, m11});
 	}
 
-	public static DMat2 Mat2(Object... o) {
+	public static DMat2 DMat2(Object... o) {
 		double[] f = new double[4];
 		Utils.fill(f, o);
 		return new DRMat2(f);
@@ -413,15 +413,15 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat2(new double[]{f[0], f[2], f[1], f[3]});
 	}
 
-	public static DMat2 Mat2(DMat2 m) {
+	public static DMat2 DMat2(DMat2 m) {
 		return m.clone();
 	}
 
-	public static DMat3 Mat3() {
+	public static DMat3 DMat3() {
 		return new DRMat3(new double[]{1, 0, 0, 0, 1, 0, 0, 0, 1});
 	}
 
-	public static DMat3 Mat3(double scale) {
+	public static DMat3 DMat3(double scale) {
 		return new DRMat3(new double[]{scale, 0, 0, 0, scale, 0, 0, 0, scale});
 	}
 
@@ -429,7 +429,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat3(new double[]{fill, fill, fill, fill, fill, fill, fill, fill, fill});
 	}
 
-	public static DMat3 Mat3(double m00, double m10, double m20, double m01, double m11, double m21, double m02, double m12, double m22) {
+	public static DMat3 DMat3(double m00, double m10, double m20, double m01, double m11, double m21, double m02, double m12, double m22) {
 		return new DRMat3(new double[]{m00, m10, m20, m01, m11, m21, m02, m12, m22});
 	}
 
@@ -437,7 +437,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat3(new double[]{m00, m10, m20, m01, m11, m21, m02, m12, m22});
 	}
 
-	public static DMat3 Mat3(Object... o) {
+	public static DMat3 DMat3(Object... o) {
 		double[] f = new double[9];
 		Utils.fill(f, o);
 		return new DRMat3(f);
@@ -449,15 +449,15 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat3(new double[]{f[0], f[3], f[6], f[1], f[4], f[7], f[2], f[5], f[8]});
 	}
 
-	public static DMat3 Mat3(DMat3 m) {
+	public static DMat3 DMat3(DMat3 m) {
 		return m.clone();
 	}
 
-	public static DMat4 Mat4() {
+	public static DMat4 DMat4() {
 		return new DRMat4(new double[]{1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1});
 	}
 
-	public static DMat4 Mat4(double scale) {
+	public static DMat4 DMat4(double scale) {
 		return new DRMat4(new double[]{scale, 0, 0, 0, 0, scale, 0, 0, 0, 0, scale, 0, 0, 0, 0, scale});
 	}
 
@@ -465,7 +465,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat4(new double[]{fill, fill, fill, fill, fill, fill, fill, fill, fill, fill, fill, fill, fill, fill, fill, fill});
 	}
 
-	public static DMat4 Mat4(double m00, double m10, double m20, double m30, double m01, double m11, double m21, double m31, double m02, double m12, double m22, double m32, double m03, double m13, double m23, double m33) {
+	public static DMat4 DMat4(double m00, double m10, double m20, double m30, double m01, double m11, double m21, double m31, double m02, double m12, double m22, double m32, double m03, double m13, double m23, double m33) {
 		return new DRMat4(new double[]{m00, m10, m20, m30, m01, m11, m21, m31, m02, m12, m22, m32, m03, m13, m23, m33});
 	}
 
@@ -473,7 +473,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat4(new double[]{m00, m10, m20, m30, m01, m11, m21, m31, m02, m12, m22, m32, m03, m13, m23, m33});
 	}
 
-	public static DMat4 Mat4(Object... o) {
+	public static DMat4 DMat4(Object... o) {
 		double[] f = new double[16];
 		Utils.fill(f, o);
 		return new DRMat4(f);
@@ -485,18 +485,18 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return new DRMat4(new double[]{f[0], f[4], f[8], f[12], f[1], f[5], f[9], f[13], f[2], f[6], f[10], f[14], f[3], f[7], f[11], f[15]});
 	}
 
-	public static DMat4 Mat4(DMat4 m) {
+	public static DMat4 DMat4(DMat4 m) {
 		return m.clone();
 	}
 
-	public static <M extends DMat<M, M, ?>> M MatX(int size) {
+	public static <M extends DMat<M, M, ?>> M DMatX(int size) {
 		switch (size) {
 			case 2 :
-				return Utils.unchecked(Mat2());
+				return Utils.unchecked(DMat2());
 			case 3 :
-				return Utils.unchecked(Mat3());
+				return Utils.unchecked(DMat3());
 			case 4 :
-				return Utils.unchecked(Mat4());
+				return Utils.unchecked(DMat4());
 		}
 		double[] mat = new double[size * size];
 		int s1 = size + 1;
@@ -506,14 +506,14 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return Utils.unchecked(new DRMatN(size, mat));
 	}
 
-	public static <M extends DMat<M, M, ?>> M MatX(int size, double scale) {
+	public static <M extends DMat<M, M, ?>> M DMatX(int size, double scale) {
 		switch (size) {
 			case 2 :
-				return Utils.unchecked(Mat2(scale));
+				return Utils.unchecked(DMat2(scale));
 			case 3 :
-				return Utils.unchecked(Mat3(scale));
+				return Utils.unchecked(DMat3(scale));
 			case 4 :
-				return Utils.unchecked(Mat4(scale));
+				return Utils.unchecked(DMat4(scale));
 		}
 		double[] mat = new double[size * size];
 		int s1 = size + 1;
@@ -537,7 +537,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return Utils.unchecked(new DRMatN(size, mat));
 	}
 
-	public static <M extends DMat<M, M, ?>> M MatX(double... mat) {
+	public static <M extends DMat<M, M, ?>> M DMatX(double... mat) {
 		final int l = mat.length;
 		final int size = (int) (VecMath.sqrt(l) + 0.5);
 		if (size * size != l)
@@ -575,7 +575,7 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return Utils.unchecked(new DRMatN(size, t));
 	}
 
-	public static <M extends DMat<M, M, ?>> M MatX(Object... o) {
+	public static <M extends DMat<M, M, ?>> M DMatX(Object... o) {
 		List<Number> ll = new ArrayList<Number>();
 		Utils.fill(ll, o);
 		final int l = ll.size();
@@ -621,20 +621,20 @@ public abstract class DMat<T extends DMat<T, T2, V>, T2 extends DMat<?, ?, ?>, V
 		return Utils.unchecked(new DRMatN(size, mat));
 	}
 
-	public static <M extends DMat<M, ?, ?>> M MatX(M m) {
+	public static <M extends DMat<M, ?, ?>> M DMatX(M m) {
 		return m.clone();
 	}
 
-	public static <M extends DMat<M, ?, ?>> M MatX(int m, int n) {
+	public static <M extends DMat<M, ?, ?>> M DMatX(int m, int n) {
 		if (m == n) {
-			return Utils.unchecked(MatX(m));
+			return Utils.unchecked(DMatX(m));
 		}
 		return Utils.unchecked(new DRMatMN(m, n));
 	}
 
-	public static <M extends DMat<M, ?, ?>> M MatX(int m, int n, double... mat) {
+	public static <M extends DMat<M, ?, ?>> M DMatX(int m, int n, double... mat) {
 		if (m == n) {
-			return Utils.unchecked(MatX(m, mat));
+			return Utils.unchecked(DMatX(m, mat));
 		}
 		return Utils.unchecked(new DRMatMN(m, n, mat));
 	}

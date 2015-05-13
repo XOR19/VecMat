@@ -62,7 +62,7 @@ public abstract class DMatN extends DMat<DMatN, DMatN, DVecN> {
 	@Override
 	public DMatN pow(int y) {
 		if (y == 0)
-			return MatX(size());
+			return DMatX(size());
 		DMatN m = this;
 		for (int i = 1; i < y; i++) {
 			m = m.mul(this);

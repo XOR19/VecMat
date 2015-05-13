@@ -55,7 +55,7 @@ public abstract class DMat2 extends DMat<DMat2, DMat2, DVec2> {
 	@Override
 	public DMat2 pow(int y) {
 		if(y==0)
-			return Mat2();
+			return DMat2();
 		DMat2 m = this;
 		for(int i=1; i<y; i++){
 			m = m.mul(this);
